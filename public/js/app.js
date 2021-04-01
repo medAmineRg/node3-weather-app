@@ -7,20 +7,19 @@ const prg2 = document.getElementById('prg2')
 
 submitForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    prg1.innerHTML = "Loading..."
     const search = document.querySelector('input').value
-    fetch(`http://localhost:3000/weather?address=${search}`)
+    fetch(`/weather?address=${search}`)
         .then(response => {
             response.json()
                 .then(data => {
                     if (data.err) {
-                        prg1.innerHTML = "Error:"
-                        prg2.innerHTML = data.err
+                        prg1.innerHTML = data.err
                         return console.log(data.err)
                     }
-                    prg1.innerText = data.location
-                    prg2.innerText = data.forecast
-                    console.log(data.location)
-                    console.log(data.forecast);
+                    prg1.innerText = data.location + "."
+                    prg2.innerText = data.forecast + "."
+
                 })
         })
 })
