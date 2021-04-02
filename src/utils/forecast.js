@@ -11,7 +11,8 @@ const forecast = (lon, lat, callback) => {
         } else {
             let temp = body.main.temp
             let chanceRain = body.clouds.all
-            callback(undefined, `its currently ${temp} degrees out. There is a ${chanceRain}% chance of rain`);
+            let desc = body.weather[0].description
+            callback(undefined, desc + `, its currently ${temp} degrees out. There is a ${chanceRain}% chance of rain`);
         }
     })
 }
